@@ -26,7 +26,7 @@ unix{
     INCLUDEPATH +="$$CVPATH/cv/opencv-249-linux32/include" \
     $$COMMON_INCLUDE_PATH
     LIBS+=-L$$CVPATH/cv/opencv-249-linux32/lib -lopencv_core -lopencv_highgui -lopencv_objdetect -lopencv_imgproc -lopencv_ml -lopencv_video -lX11 \
-    -L$$COMMON_LIB_PATH/ -ltools
+    $$COMMON_LIB_PATH/libtools.a
 }
 win32{
 INCLUDEPATH +="$$CVPATH\cv\opencv-vs2013-x86\include"
@@ -38,6 +38,14 @@ LIBS+=-L$$CVPATH\cv\opencv-vs2013-x86\lib -lopencv_core249 -lopencv_highgui249 -
 #message("release mode ")
 }
 }
+
+win32{
+    INCLUDEPATH +="$$CVPATH/cv/opencv-vs2013-x86/include" \
+    $$COMMON_INCLUDE_PATH
+  #  LIBS+=-L$$CVPATH/cv/opencv-vs2013-x86/lib  -lopencv_core249 -lopencv_highgui249 -lopencv_objdetect249 -lopencv_imgproc249 -lopencv_ml249 -lopencv_video249
+    LIBS+= -L$$COMMON_LIB_PATH/ -ltools
+}
+message($$LIBS)
 #build_pass:CONFIG(debug, debug|release) {
 #    unix: message("os:unix debug ")
 #    win32: message("os:win32 debug")
